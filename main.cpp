@@ -6,5 +6,7 @@
 int main(int argc,char **argv)
 {
 	hello_world();
-	ActivateUser();	
+	int activation_result = ActivateUser();
+	printf("Account creation response: %d\n", activation_result);
+	return 0;
 }

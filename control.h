@@ -13,6 +13,6 @@
 #define SDK_VERSION           (MAKE_VERSION(2,3,10,0))
 
 void hello_world(void);
-void ActivateUser(void);
+int ActivateUser(void);
 
 #endif
