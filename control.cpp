@@ -5,9 +5,10 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <math.h>
-
-static int hello_world()
+#include "control.h"
+	
+void hello_world()
 {
 	printf("hello world");
-	return 0;
+	// return 0;
 }

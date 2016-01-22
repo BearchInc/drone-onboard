@@ -9,6 +9,6 @@
 #include "DJI_LIB/DJI_Pro_Config.h"
 #include "DJI_LIB/DJI_Pro_Rmu.h"
 
-int hello_world(void);
+void hello_world(void);
 
 #endif
