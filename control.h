@@ -12,7 +12,9 @@
 #define MAKE_VERSION(a,b,c,d) (((a << 24)&0xff000000) | ((b << 16)&0x00ff0000) | ((c << 8)&0x0000ff00) | (d&0x000000ff))
 #define SDK_VERSION           (MAKE_VERSION(2,3,10,0))
 
-void hello_world(void);
 int ActivateUser(void);
+void RequestControl(void);
+void Land(void);
+void TakeOff(void);
 
 #endif

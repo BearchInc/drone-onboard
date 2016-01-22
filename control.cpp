@@ -21,5 +21,16 @@ int ActivateUser() {
 	user_act_data.app_api_level = 2;
 	user_act_data.app_ver = SDK_VERSION;
 	return DJI_Pro_Activate_API(&user_act_data, NULL);
+}
 
+void TakeOff() {
+	DJI_Pro_Status_Ctrl(4,0);
+}
+
+void Land() {
+	DJI_Pro_Status_Ctrl(6,0);
+}
+
+void RequestControl() {
+	DJI_Pro_Control_Management(1,NULL);
 }
