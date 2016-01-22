@@ -4,6 +4,8 @@ OBJECTS = main.o control.o DJI_Pro_App.o DJI_Pro_Hw.o DJI_Pro_Link.o DJI_Pro_Cod
 
 CFLAGS = -I/DJI_LIB
 
+LDFLAGS = -lpthread
+
 CXX = g++
 
 $(TARGET) : $(OBJECTS)
