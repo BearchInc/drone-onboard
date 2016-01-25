@@ -6,9 +6,14 @@
 
 int main(int argc,char **argv)
 {
-	// sleep(10);
-	int activation_result = ActivateUser();
-	printf("Account creation response: %d\n", activation_result);
+	printf("Opening serial port...");
+	if (OpenSerialPort() < 0) {
+		perror("UAV Serial Port Open ERROR/n");
+		return 0;
+	}
+	usleep(3000000);
+	printf("Activating user...");
+	ActivateUser();
 	usleep(3000000);
 	printf("Requesting control...");
 	RequestControl();
