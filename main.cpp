@@ -10,7 +10,7 @@
 int main(int argc,char **argv)
 {
 	const int butPin = 17;
-	bool button_pressed = false;
+	bool canpress = true;
     	wiringPiSetupGpio(); // Initialize wiringPi -- using Broadcom pin numbers
     	pinMode(butPin, INPUT);      // Set button as INPUT
 
@@ -21,14 +21,15 @@ int main(int argc,char **argv)
 	}
 
 	while(1) {
-		// Button is released if this returns 1
-		if (digitalRead(butPin)) { 
-			printf("Button released...\n");
-			button_pressed = false;
-		} else if(!button_pressed) {
-			printf("Activating user...\n");
+		bool button_released = digitalRead(butPin);
+		if (!button_released && canpress ) { 
 			printf("Button pressed...\n");
-			ActivateUser();	
+			canpress = false; 
+		} else if (button_released && !canpress) {
+			//printf("Activating user...\n");
+			printf("Button released...\n");
+			canpress = true;
+			//ActivateUser();	
 		}
 	}
 	
