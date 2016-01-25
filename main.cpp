@@ -6,22 +6,54 @@
 
 int main(int argc,char **argv)
 {
-	printf("Opening serial port...");
-	if (OpenSerialPort() < 0) {
-		perror("UAV Serial Port Open ERROR\n");
-		return 0;
+
+	int main_operate_code = 0;
+	int temp32 = 0;
+	bool valid_flag = false;
+
+	// printf("Opening serial port...");
+	// if (OpenSerialPort() < 0) {
+	// 	perror("UAV Serial Port Open ERROR\n");
+	// 	return 0;
+	// }
+	
+
+
+	while (1) {
+
+		temp32 = getchar();
+		if(temp32 != 10) {
+			if(valid_flag == false)
+			{
+				main_operate_code = temp32;
+				valid_flag = true;
+			} else {
+
+			}
+			continue;
+		}
+		switch(main_operate_code)
+		{
+			case 'a':
+			printf("Activating user...\n");
+			ActivateUser();
+			break;
+			case 'b':
+			printf("Requesting control...\n");
+			RequestControl();
+			break;
+			case 'c':
+			printf("Taking off...\n");
+			TakeOff();
+			break;
+			case 'd':
+			printf("Landing...\n");
+			Land();
+			break;
+			
+		}
+		main_operate_code = -1;
+		valid_flag = false;	
 	}
-	usleep(7000000);
-	printf("Activating user...\n");
-	ActivateUser();
-	usleep(7000000);
-	printf("Requesting control...\n");
-	RequestControl();
-	usleep(10000000);
-	printf("Taking off...\n");
-	TakeOff();
-	usleep(20000000);
-	printf("Landing...\n");
-	Land();
 	return 0;
 }
