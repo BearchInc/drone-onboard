@@ -35,5 +35,3 @@ DJI_Pro_Rmu.o: DJI_LIB/DJI_Pro_Rmu.cpp
 clean:
 	-rm *.o
 	-rm $(TARGET)
-
-

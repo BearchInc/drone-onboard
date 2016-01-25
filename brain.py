@@ -1,5 +1,5 @@
-import RPi.GPIO as GPIO
 import time
+import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
 
@@ -12,10 +12,10 @@ while True:
     landing_idle = GPIO.input(23)
 
     if not takingoff_idle:
-        print('Takeoff Button Pressed')
+        print 'Takeoff Button Pressed'
 
     if not landing_idle:
-        print('Landing Button Pressed')
+        print 'Landing Button Pressed'
         time.sleep(0.2)
 
     time.sleep(0.2)
