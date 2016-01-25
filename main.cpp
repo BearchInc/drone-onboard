@@ -8,20 +8,20 @@ int main(int argc,char **argv)
 {
 	printf("Opening serial port...");
 	if (OpenSerialPort() < 0) {
-		perror("UAV Serial Port Open ERROR/n");
+		perror("UAV Serial Port Open ERROR\n");
 		return 0;
 	}
-	usleep(3000000);
-	printf("Activating user...");
+	usleep(7000000);
+	printf("Activating user...\n");
 	ActivateUser();
-	usleep(3000000);
-	printf("Requesting control...");
+	usleep(7000000);
+	printf("Requesting control...\n");
 	RequestControl();
-	usleep(3000000);
-	printf("Taking off...");
-	TakeOff();
 	usleep(10000000);
-	printf("Landing...");
+	printf("Taking off...\n");
+	TakeOff();
+	usleep(20000000);
+	printf("Landing...\n");
 	Land();
 	return 0;
 }

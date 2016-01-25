@@ -15,7 +15,7 @@ void hello_world()
 }
 
 int OpenSerialPort() {
-	int baudrate = 115200;
+	int baudrate = 230400;
 	char uart_name[32] = {"/dev/ttyAMA0"};
 
 	if(Pro_Hw_Setup(uart_name, baudrate) < 0) {
