@@ -28,11 +28,11 @@ int OpenSerialPort() {
 
 activate_data_t user_act_data;
 void ActivateUser() {
-	char key[] = "a4dc524ca61ca643a9cf1a70cc3f711cb17fc8dea13e7ef96d12bdc10ee2a11a";
+	char key[] = "f28973098ca26058f1c2a81676a49e48fad27a4703728811ffb612526087a2e0";
 	char app_bundle_id[32] = "1234567890";
 
 	user_act_data.app_key = key;
-	user_act_data.app_id = 1024717;
+	user_act_data.app_id = 1024746;
 	user_act_data.app_api_level = 2;
 	user_act_data.app_ver = SDK_VERSION;
 	strcpy((char*)user_act_data.app_bundle_id, app_bundle_id);
