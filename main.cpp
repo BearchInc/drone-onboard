@@ -11,11 +11,11 @@ int main(int argc,char **argv)
 	int temp32 = 0;
 	bool valid_flag = false;
 
-	// printf("Opening serial port...");
-	// if (OpenSerialPort() < 0) {
-	// 	perror("UAV Serial Port Open ERROR\n");
-	// 	return 0;
-	// }
+	printf("Opening serial port...");
+	if (OpenSerialPort() < 0) {
+		perror("UAV Serial Port Open ERROR\n");
+		return 0;
+	}
 	
 
 
