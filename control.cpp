@@ -8,10 +8,11 @@
 #include "control.h"
 #include "DJI_LIB/DJI_Pro_App.h"
 
-void hello_world()
-{
-	printf("hello world");
-	// return 0;
+void OnActivate(unsigned short result) {
+	printf("Activated with code: %d\n", result);
+	usleep(3000000);
+	printf("Quizz: Quanto tempo passou?\n");
+	RequestControl();
 }
 
 int OpenSerialPort() {
@@ -28,8 +29,8 @@ int OpenSerialPort() {
 
 activate_data_t user_act_data;
 void ActivateUser() {
-	char key[] = "f28973098ca26058f1c2a81676a49e48fad27a4703728811ffb612526087a2e0";
 	char app_bundle_id[32] = "1234567890";
+	char key[] = "f28973098ca26058f1c2a81676a49e48fad27a4703728811ffb612526087a2e0";
 
 	user_act_data.app_key = key;
 	user_act_data.app_id = 1024746;
@@ -37,7 +38,7 @@ void ActivateUser() {
 	user_act_data.app_ver = SDK_VERSION;
 	strcpy((char*)user_act_data.app_bundle_id, app_bundle_id);
 
-	DJI_Pro_Activate_API(&user_act_data, NULL);
+	DJI_Pro_Activate_API(&user_act_data, &OnActivate);
 }
 
 void TakeOff() {

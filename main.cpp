@@ -9,10 +9,10 @@
 
 int main(int argc,char **argv)
 {
-	const int butPin = 17;
-	bool canpress = true;
+	const int butPin = 16;
     	wiringPiSetupGpio(); // Initialize wiringPi -- using Broadcom pin numbers
     	pinMode(butPin, INPUT);      // Set button as INPUT
+	pullUpDnControl(butPin, PUD_UP);
 
 	printf("Opening serial port...\n");
 	if (OpenSerialPort() < 0) {
@@ -20,16 +20,19 @@ int main(int argc,char **argv)
 		return 0;
 	}
 
+	ActivateUser();	
+
+	bool pressed = false;
 	while(1) {
-		bool button_released = digitalRead(butPin);
-		if (!button_released && canpress ) { 
+		usleep(10000);
+		int button_state = digitalRead(butPin);
+		if (button_state == LOW && !pressed) { 
+			pressed = true;
 			printf("Button pressed...\n");
-			canpress = false; 
-		} else if (button_released && !canpress) {
-			//printf("Activating user...\n");
+			TakeOff();
+		} else if (button_state == HIGH && pressed) {
 			printf("Button released...\n");
-			canpress = true;
-			//ActivateUser();	
+			pressed = false;
 		}
 	}
 	
