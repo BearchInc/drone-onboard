@@ -1,0 +1,9 @@
+Host raspberry1
+    HostName 192.168.0.24
+    User pi
+    IdentityFile ~/.ssh/id_rsa_pi
+
+Host raspberry2
+    HostName 192.168.0.46
+    User pi
+    IdentityFile ~/.ssh/id_rsa_pi

@@ -40,7 +40,7 @@ $(OUTPUT)/DJI_Pro_Rmu.o: DJI_LIB/DJI_Pro_Rmu.cpp
 	$(CXX) $(CFLAGS) -c -o $(OUTPUT)/DJI_Pro_Rmu.o DJI_LIB/DJI_Pro_Rmu.cpp
 
 ssh:
-	cp -r .ssh/* ~/.ssh
+	cp -r ssh-config/* ~/.ssh
 
 deploy: ssh main
 	scp $(OUTPUT)/main $(DEPLOY_TARGET):/home/pi/main
