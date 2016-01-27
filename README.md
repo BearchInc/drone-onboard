@@ -20,9 +20,7 @@ This error seems to be related to incorrect key. Make sure your key variable don
 
 ### MacOS
 
-```shell
-$ brew install gcc-arm-none-eabi-49
-```
+Download and install [gcc-linaro-arm-linux-gnueabihf-raspbian-2014.05_mac](http://www.welzels.de/blog/download/gcc-linaro-arm-linux-gnueabihf-raspbian-2014.05_mac.zip)
 
 ### Ubuntu
 
