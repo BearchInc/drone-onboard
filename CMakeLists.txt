@@ -4,8 +4,6 @@ project(drone_onboard)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
-    crosscompile/crosscompile.cpp
-    crosscompile/crosscompile.h
     DJI_LIB/DJI_Pro_App.cpp
     DJI_LIB/DJI_Pro_App.h
     DJI_LIB/DJI_Pro_Codec.cpp
