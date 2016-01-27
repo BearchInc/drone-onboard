@@ -1,5 +1,4 @@
 .idea
-*.o
-main
+.build
 .DS_Store
 DJI_Pro_Rmu.o

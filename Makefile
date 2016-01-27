@@ -1,45 +1,49 @@
 TARGET = main
 
+OUTPUT = .build
+
 DEPLOY_TARGET = raspberry1
 
-OBJECTS = main.o control.o DJI_Pro_App.o DJI_Pro_Hw.o DJI_Pro_Link.o DJI_Pro_Codec.o DJI_Pro_Rmu.o
+OBJECTS = $(OUTPUT)/main.o $(OUTPUT)/control.o $(OUTPUT)/DJI_Pro_App.o $(OUTPUT)/DJI_Pro_Hw.o $(OUTPUT)/DJI_Pro_Link.o $(OUTPUT)/DJI_Pro_Codec.o $(OUTPUT)/DJI_Pro_Rmu.o
 
-CFLAGS = -I/DJI_LIB -Ilibs/includes
+CFLAGS = -Ilibs/includes
 
 LDFLAGS = -Llibs -lpthread -lwiringPi
 
 CXX = /usr/local/linaro/arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf-g++
 
-$(TARGET) : $(OBJECTS)
-	$(CXX) -o $(TARGET) $(OBJECTS) $(LDFLAGS)
+$(TARGET) : clean output $(OBJECTS)
+	$(CXX) -o $(OUTPUT)/$(TARGET) $(OBJECTS) $(LDFLAGS)
 
-main.o : main.cpp
-	$(CXX) $(CFLAGS) -c main.cpp
+output :
+	mkdir -p $(OUTPUT)
 
-control.o : control.cpp
-	$(CXX) $(CFLAGS) -c control.cpp
+$(OUTPUT)/main.o : main.cpp
+	$(CXX) $(CFLAGS) -c -o $(OUTPUT)/main.o main.cpp
 
-DJI_Pro_App.o : DJI_LIB/DJI_Pro_App.cpp
-	$(CXX) $(CFLAGS) -c DJI_LIB/DJI_Pro_App.cpp
-	
-DJI_Pro_Hw.o : DJI_LIB/DJI_Pro_Hw.cpp
-	$(CXX) $(CFLAGS) -c DJI_LIB/DJI_Pro_Hw.cpp
+$(OUTPUT)/control.o : control.cpp
+	$(CXX) $(CFLAGS) -c -o $(OUTPUT)/control.o control.cpp
 
-DJI_Pro_Link.o : DJI_LIB/DJI_Pro_Link.cpp
-	$(CXX) $(CFLAGS) -c DJI_LIB/DJI_Pro_Link.cpp
+$(OUTPUT)/DJI_Pro_App.o : DJI_LIB/DJI_Pro_App.cpp
+	$(CXX) $(CFLAGS) -c -o $(OUTPUT)/DJI_Pro_App.o DJI_LIB/DJI_Pro_App.cpp
 
-DJI_Pro_Codec.o : DJI_LIB/DJI_Pro_Codec.cpp
-	$(CXX) $(CFLAGS) -c DJI_LIB/DJI_Pro_Codec.cpp
+$(OUTPUT)/DJI_Pro_Hw.o : DJI_LIB/DJI_Pro_Hw.cpp
+	$(CXX) $(CFLAGS) -c -o $(OUTPUT)/DJI_Pro_Hw.o DJI_LIB/DJI_Pro_Hw.cpp
 
-DJI_Pro_Rmu.o: DJI_LIB/DJI_Pro_Rmu.cpp
-	$(CXX) $(CFLAGS) -c DJI_LIB/DJI_Pro_Rmu.cpp
+$(OUTPUT)/DJI_Pro_Link.o : DJI_LIB/DJI_Pro_Link.cpp
+	$(CXX) $(CFLAGS) -c -o $(OUTPUT)/DJI_Pro_Link.o DJI_LIB/DJI_Pro_Link.cpp
 
-config:
+$(OUTPUT)/DJI_Pro_Codec.o : DJI_LIB/DJI_Pro_Codec.cpp
+	$(CXX) $(CFLAGS) -c -o $(OUTPUT)/DJI_Pro_Codec.o DJI_LIB/DJI_Pro_Codec.cpp
+
+$(OUTPUT)/DJI_Pro_Rmu.o: DJI_LIB/DJI_Pro_Rmu.cpp
+	$(CXX) $(CFLAGS) -c -o $(OUTPUT)/DJI_Pro_Rmu.o DJI_LIB/DJI_Pro_Rmu.cpp
+
+ssh:
 	cp -r .ssh/* ~/.ssh
 
-deploy: main
-	scp main $(DEPLOY_TARGET):/home/pi/main
+deploy: ssh main
+	scp $(OUTPUT)/main $(DEPLOY_TARGET):/home/pi/main
 
 clean:
-	-rm *.o
-	-rm $(TARGET)
+	@-rm -rf $(OUTPUT)
