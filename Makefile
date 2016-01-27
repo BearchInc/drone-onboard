@@ -10,7 +10,9 @@ CFLAGS = -Ilibs/includes
 
 LDFLAGS = -Llibs -lpthread -lwiringPi
 
-CXX = /usr/local/linaro/arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf-g++
+OS = $(shell uname)
+
+CXX = $(shell [[ $(OS) == "Darwin" ]] && echo "/usr/local/linaro/arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf-g++" || echo "arm-linux-gnueabi-g++")
 
 $(TARGET) : clean output $(OBJECTS)
 	$(CXX) -o $(OUTPUT)/$(TARGET) $(OBJECTS) $(LDFLAGS)
