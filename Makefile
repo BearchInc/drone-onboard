@@ -12,7 +12,11 @@ LDFLAGS = -Llibs -lpthread -lwiringPi
 
 OS = $(shell uname)
 
-CXX = $(shell [[ $(OS) == "Darwin" ]] && echo "/usr/local/linaro/arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf-g++" || echo "arm-linux-gnueabi-g++")
+ifeq ($(OS),Darwin)
+    CXX = "/usr/local/linaro/arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf-g++"
+else
+    CXX = "arm-linux-gnueabi-g++"
+endif
 
 $(TARGET) : clean output $(OBJECTS)
 	$(CXX) -o $(OUTPUT)/$(TARGET) $(OBJECTS) $(LDFLAGS)
