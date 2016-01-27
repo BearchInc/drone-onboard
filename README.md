@@ -16,7 +16,7 @@ Make sure the `API Control` checkbox is enabled on the `N1 Assistant`.
 
 This error seems to be related to incorrect key. Make sure your key variable don't get deallcated for some reason, that would cause the activate_data_t.app_key lose its value, and that will make your life miserable.
 
-# Required Tools
+# Cross Compilers
 
 ### MacOS
 
