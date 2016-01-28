@@ -73,13 +73,9 @@ int main(int argc, char **argv)
             pressed = false;
         }
     }
-
-
-
-    return 0;
 }
 
-void moveDrone()
+void moveDroneBack()
 {
     attitude_data_t user_ctrl_data;
     int i;
@@ -91,11 +87,10 @@ void moveDrone()
         user_ctrl_data.thr_z = 0;
         user_ctrl_data.yaw = 0;
         DJI_Pro_Attitude_Control(&user_ctrl_data);
-        usleep(20000);
     }
 }
 
-void moveDroneBack()
+void moveDrone()
 {
     attitude_data_t user_ctrl_data;
     int i;
@@ -107,7 +102,36 @@ void moveDroneBack()
         user_ctrl_data.thr_z = 0;
         user_ctrl_data.yaw = 0;
         DJI_Pro_Attitude_Control(&user_ctrl_data);
-        usleep(20000);
+    }
+}
+
+void moveDroneRight()
+{
+    attitude_data_t user_ctrl_data;
+    int i;
+    for(i = 0;i < 60;i++)
+    {
+        user_ctrl_data.ctrl_flag = HORIZ_POS|VERT_VEL|YAW_ANG|HORIZ_BODY|YAW_BODY;
+        user_ctrl_data.roll_or_x = 0;
+        user_ctrl_data.pitch_or_y = 3;
+        user_ctrl_data.thr_z = 0;
+        user_ctrl_data.yaw = 0;
+        DJI_Pro_Attitude_Control(&user_ctrl_data);
+    }
+}
+
+void moveDroneLeft()
+{
+    attitude_data_t user_ctrl_data;
+    int i;
+    for(i = 0;i < 60;i++)
+    {
+        user_ctrl_data.ctrl_flag = HORIZ_POS|VERT_VEL|YAW_ANG|HORIZ_BODY|YAW_BODY;
+        user_ctrl_data.roll_or_x = 0;
+        user_ctrl_data.pitch_or_y = -3;
+        user_ctrl_data.thr_z = 0;
+        user_ctrl_data.yaw = 0;
+        DJI_Pro_Attitude_Control(&user_ctrl_data);
     }
 }
 
@@ -151,10 +175,21 @@ int EventHandler(int data_type, int data_len, char *content)
             ultrasonic_data *data = (ultrasonic_data *) content;
             cout << "distance: " << data->ultrasonic[1] << endl;
             cout << "reliability: " << data->reliability[1] << endl << endl;
-            if (data->ultrasonic[1] < 1000) {
-                moveDrone();
-            } else {
+            //Frontal camera
+            if (data->ultrasonic[1] < 200 && data->reliability[1] > 0) {
                 moveDroneBack();
+            }
+            //Back camera
+            if (data->ultrasonic[3] < 200 && data->reliability[3] > 0) {
+                moveDrone();
+            }
+            //Right camera
+            if (data->ultrasonic[2] < 200 && data->reliability[2] > 0 ) {
+                moveDroneLeft();
+            }
+            //Left camera
+            if (data->ultrasonic[4] < 200 && data->reliability[4] > 0) {
+                moveDroneRight();
             }
             break;
         }
@@ -166,7 +201,6 @@ int EventHandler(int data_type, int data_len, char *content)
         }
     }
 
-    delay(2000);
     mutex.leave();
     return 0;
 }
