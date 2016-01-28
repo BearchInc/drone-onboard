@@ -17,7 +17,6 @@ char key[] = "f28973098ca26058f1c2a81676a49e48fad27a4703728811ffb612526087a2e0";
 void OnActivate(unsigned short result) {
     printf("Activated with code: %d\n", result);
     usleep(3000000);
-    printf("Quizz: Quanto tempo passou?\n");
     RequestControl();
 }
 
