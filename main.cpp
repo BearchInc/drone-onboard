@@ -60,6 +60,7 @@ int main(int argc, char **argv)
     cout<<endl;
 
     select_ultrasonic();
+    select_obstacle_distance();
 
     err_code = set_sdk_event_handler(EventHandler);
     RETURN_IF_ERR(err_code);
@@ -82,12 +83,23 @@ int EventHandler(int data_type, int data_len, char *content)
 {
     mutex.enter();
 
-    ultrasonic_data* data = (ultrasonic_data*)content;
+    cout << "Data Type: " << data_type << endl;
 
-    // TODO Add mutex to avoid race conditions
-    // Apparently the SDK does not ensure callback calls are serialized.
-    cout << "distance: " << data->ultrasonic[1] << endl;
-    cout << "reliability: " << data->reliability[1] << endl;
+    switch (data_type)
+    {
+        case e_ultrasonic: {
+            ultrasonic_data *data = (ultrasonic_data *) content;
+            cout << "distance: " << data->ultrasonic[1] << endl;
+            cout << "reliability: " << data->reliability[1] << endl << endl;
+            break;
+        }
+
+        case e_obstacle_distance: {
+            obstacle_distance *data = (obstacle_distance *) content;
+            cout << "distance: " << data->distance[1] << endl << endl;
+            break;
+        }
+    }
 
     delay(2000);
     mutex.leave();
