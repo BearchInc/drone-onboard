@@ -12,12 +12,12 @@ int main(int argc, char **argv) {
     pullUpDnControl(butPin, PUD_UP);
 
     printf("Opening serial port...\n");
-    if (openSerialPort() < 0) {
+    if (OpenSerialPort() < 0) {
         perror("UAV Serial Port Open ERROR\n");
         return 0;
     }
 
-    activateUser();
+    ActivateUser();
 
     bool pressed = false;
     while (1) {
@@ -26,7 +26,7 @@ int main(int argc, char **argv) {
         if (button_state == LOW && !pressed) {
             pressed = true;
             printf("Button pressed...\n");
-            takeOff();
+            TakeOff();
         } else if (button_state == HIGH && pressed) {
             printf("Button released...\n");
             pressed = false;

@@ -7,12 +7,12 @@
 #include "DJI_LIB/DJI_Pro_Codec.h"
 #include "DJI_LIB/DJI_Pro_Config.h"
 
-int openSerialPort(void);
+int OpenSerialPort();
 
-void activateUser(void);
+void ActivateUser();
 
-void requestControl(void);
+void RequestControl();
 
-void land(void);
+void Land();
 
-void takeOff(void);
+void TakeOff();

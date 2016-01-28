@@ -14,14 +14,14 @@ char uart_name[32] = {"/dev/ttyAMA0"};
 char app_bundle_id[32] = "1234567890";
 char key[] = "f28973098ca26058f1c2a81676a49e48fad27a4703728811ffb612526087a2e0";
 
-void onActivate(unsigned short result) {
+void OnActivate(unsigned short result) {
     printf("Activated with code: %d\n", result);
     usleep(3000000);
     printf("Quizz: Quanto tempo passou?\n");
-    requestControl();
+    RequestControl();
 }
 
-int openSerialPort() {
+int OpenSerialPort() {
     if (Pro_Hw_Setup(uart_name, baudrate) < 0) {
         return -1;
     }
@@ -30,24 +30,24 @@ int openSerialPort() {
     return 0;
 }
 
-void activateUser() {
+void ActivateUser() {
     user_act_data.app_key = key;
     user_act_data.app_id = 1024746;
     user_act_data.app_api_level = 2;
     user_act_data.app_ver = SDK_VERSION;
 
     strcpy((char *) user_act_data.app_bundle_id, app_bundle_id);
-    DJI_Pro_Activate_API(&user_act_data, &onActivate);
+    DJI_Pro_Activate_API(&user_act_data, &OnActivate);
 }
 
-void takeOff() {
+void TakeOff() {
     DJI_Pro_Status_Ctrl(4, 0);
 }
 
-void land() {
+void Land() {
     DJI_Pro_Status_Ctrl(6, 0);
 }
 
-void requestControl() {
+void RequestControl() {
     DJI_Pro_Control_Management(1, NULL);
 }
