@@ -39,7 +39,7 @@ void OnActivate(unsigned short result) {
 
 bool Drone::Connect(int app_id, char key[]) 
 {
-    cout << "Connecting drone..." << endl;
+    cout << "Connecting to drone..." << endl;
     if(OpenSerialPort()) {
         return false;
     }
@@ -52,6 +52,11 @@ bool Drone::Connect(int app_id, char key[])
     strcpy((char *) user_act_data.app_bundle_id, app_bundle_id);
     DJI_Pro_Activate_API(&user_act_data, &OnActivate);
 }
+
+bool Drone::Disconnect() {
+    cout << "Releasing control" << endl;
+    DJI_Pro_Control_Management(0, NULL);
+} 
 
 bool Drone::TakeOff() {
     DJI_Pro_Status_Ctrl(4, 0);
