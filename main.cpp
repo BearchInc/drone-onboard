@@ -7,14 +7,19 @@
 
 #include "models/Lock.h"
 #include "control.h"
+#include "models/brain.h"
 #include "models/drone.h"
 
 using namespace std;
 
 int main(int argc, char **argv)
 {
-    // Brain brain;
+
 	Drone dji;
-    dji.Connect(1024746);//, "f28973098ca26058f1c2a81676a49e48fad27a4703728811ffb612526087a2e0");
+    char key[] = "f28973098ca26058f1c2a81676a49e48fad27a4703728811ffb612526087a2e0";
+    dji.Connect(1024746, key);
+
+    getchar();
+    dji.TakeOff();
 	return 0;
 }
