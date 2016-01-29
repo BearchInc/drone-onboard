@@ -21,7 +21,7 @@ public:
     //open serial
     //take control
     //connect brain
-    bool Connect(int app_id, char* key);
+    bool Connect();
     //release control
     //disconnect brain
     bool Disconnect();

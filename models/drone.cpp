@@ -9,13 +9,19 @@ Drone::Drone()
     cout << "Object is being created" << endl;
 }
 
+activate_data_t user_act_data;
+int baudrate = 230400;
+char uart_name[32] = {"/dev/ttyAMA0"};
+char app_bundle_id[32] = "1234567890";
+char key[] = "f28973098ca26058f1c2a81676a49e48fad27a4703728811ffb612526087a2e0";
 char port_name[32] = {"/dev/ttyAMA0"};
+
 bool OpenSerialPort() {
-	cout << "Openning serial port" << endl;
-	int baudrate = 230400;
+    cout << "Openning serial port" << endl;
+    int baudrate = 230400;
     
     if (Pro_Hw_Setup(port_name, baudrate) < 0) {
-    	cout << "Failed to serial port" << endl;
+        cout << "Failed to serial port" << endl;
         return true;
     }
 
@@ -31,30 +37,29 @@ void OnActivate(unsigned short result) {
     DJI_Pro_Control_Management(1, NULL);
 }
 
-bool Drone::Connect(int app_id, char* key) 
+bool Drone::Connect() 
 {
-	cout << "Connecting drone..." << endl;
-	if(OpenSerialPort()) {
-		return false;
-	}
+    cout << "Connecting drone..." << endl;
+    if(OpenSerialPort()) {
+        return false;
+    }
 
-	cout << "Activating drone..." << endl;
-
-	activate_data_t user_act_data;
-    user_act_data.app_id = app_id;
+    user_act_data.app_key = key;
+    user_act_data.app_id = 1024746;
     user_act_data.app_api_level = 2;
-    strcpy((char *) user_act_data.app_key, key);
-    
+    user_act_data.app_ver = SDK_VERSION;
+
+    strcpy((char *) user_act_data.app_bundle_id, app_bundle_id);
     DJI_Pro_Activate_API(&user_act_data, &OnActivate);
 }
 
 bool Drone::TakeOff() {
-	DJI_Pro_Status_Ctrl(4, 0);
-	return true;
+    DJI_Pro_Status_Ctrl(4, 0);
+    return true;
 }
 
 bool Drone::Land() {
-	return false;
+    return false;
 }
 void Drone::MoveBack() {
 
