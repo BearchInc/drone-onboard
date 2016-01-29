@@ -43,6 +43,7 @@ using namespace std;
 
 int EventHandler(int data_type, int data_len, char *content);
 int startGuidance();
+int stopGuidance();
 
 int main(int argc, char **argv)
 {
@@ -60,14 +61,25 @@ int main(int argc, char **argv)
     ActivateUser();
 
     bool pressed = false;
+    bool flying = false;
+
     while (1) {
         usleep(10000);
         int button_state = digitalRead(butPin);
         if (button_state == LOW && !pressed) {
             pressed = true;
             cout << "Button pressed..." << endl;
-            TakeOff();
-            startGuidance();
+            if (!flying) {
+                TakeOff();
+                int err_code = startGuidance();
+                RETURN_IF_ERR(err_code);
+                flying = true;
+            } else {
+                Land();
+                int err_code = stopGuidance();
+                RETURN_IF_ERR(err_code);
+                return 0;
+            }
         } else if (button_state == HIGH && pressed) {
             cout << "Button released..." << endl;
             pressed = false;
@@ -159,15 +171,19 @@ int startGuidance()
 
     err_code = start_transfer();
     RETURN_IF_ERR(err_code);
+
+    return 0;
 }
 
 int stopGuidance() {
-    err_code = stop_transfer();
+    int err_code = stop_transfer();
     RETURN_IF_ERR( err_code );
     //make sure the ack packet from GUIDANCE is received
     sleep( 1000000 );
     err_code = release_transfer();
     RETURN_IF_ERR( err_code );
+
+    return 0;
 }
 
 Lock mutex;
