@@ -65,15 +65,64 @@ bool Drone::TakeOff() {
 bool Drone::Land() {
     return false;
 }
-void Drone::MoveBack() {
 
+void Drone::MoveBack()
+{
+    attitude_data_t user_ctrl_data;
+    int i;
+    for(i = 0;i < 60;i++)
+    {
+        user_ctrl_data.ctrl_flag = HORIZ_POS|VERT_VEL|YAW_ANG|HORIZ_BODY|YAW_BODY;
+        user_ctrl_data.roll_or_x = 3;
+        user_ctrl_data.pitch_or_y = 0;
+        user_ctrl_data.thr_z = 0;
+        user_ctrl_data.yaw = 0;
+        DJI_Pro_Attitude_Control(&user_ctrl_data);
+    }
 }
-void Drone::MoveFoward() {
 
+void Drone::MoveFoward()
+{
+    attitude_data_t user_ctrl_data;
+    int i;
+    for(i = 0;i < 60;i++)
+    {
+        user_ctrl_data.ctrl_flag = HORIZ_POS|VERT_VEL|YAW_ANG|HORIZ_BODY|YAW_BODY;
+        user_ctrl_data.roll_or_x = -3;
+        user_ctrl_data.pitch_or_y = 0;
+        user_ctrl_data.thr_z = 0;
+        user_ctrl_data.yaw = 0;
+        DJI_Pro_Attitude_Control(&user_ctrl_data);
+    }
 }
-void Drone::MoveRight() {
 
+void Drone::MoveRight()
+{
+    attitude_data_t user_ctrl_data;
+    int i;
+    for(i = 0;i < 60;i++)
+    {
+        user_ctrl_data.ctrl_flag = HORIZ_POS|VERT_VEL|YAW_ANG|HORIZ_BODY|YAW_BODY;
+        user_ctrl_data.roll_or_x = 0;
+        user_ctrl_data.pitch_or_y = -3;
+        user_ctrl_data.thr_z = 0;
+        user_ctrl_data.yaw = 0;
+        DJI_Pro_Attitude_Control(&user_ctrl_data);
+    }
 }
-void Drone::MoveLeft() {
 
+void Drone::MoveLeft()
+{
+    attitude_data_t user_ctrl_data;
+    int i;
+    for(i = 0;i < 60;i++)
+    {
+        user_ctrl_data.ctrl_flag = HORIZ_POS|VERT_VEL|YAW_ANG|HORIZ_BODY|YAW_BODY;
+        user_ctrl_data.roll_or_x = 0;
+        user_ctrl_data.pitch_or_y = 3;
+        user_ctrl_data.thr_z = 0;
+        user_ctrl_data.yaw = 0;
+        DJI_Pro_Attitude_Control(&user_ctrl_data);
+    }
 }
+
