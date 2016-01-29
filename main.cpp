@@ -161,6 +161,15 @@ int startGuidance()
     RETURN_IF_ERR(err_code);
 }
 
+int stopGuidance() {
+    err_code = stop_transfer();
+    RETURN_IF_ERR( err_code );
+    //make sure the ack packet from GUIDANCE is received
+    sleep( 1000000 );
+    err_code = release_transfer();
+    RETURN_IF_ERR( err_code );
+}
+
 Lock mutex;
 
 int EventHandler(int data_type, int data_len, char *content)
