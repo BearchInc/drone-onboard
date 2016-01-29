@@ -22,5 +22,7 @@ int main(int argc, char **argv)
 
     getchar();
     dji.TakeOff();
+    usleep(10000000);
+    dji.MoveForward();
 	return 0;
 }
