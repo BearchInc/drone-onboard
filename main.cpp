@@ -12,11 +12,13 @@
 
 using namespace std;
 
+char key[] = "f28973098ca26058f1c2a81676a49e48fad27a4703728811ffb612526087a2e0";
+int app_id = 1024746;
+
 int main(int argc, char **argv)
 {
-	Drone dji;
-    dji.Connect();
-
+	Drone dji;	
+    dji.Connect(app_id, key);
 
     getchar();
     dji.TakeOff();

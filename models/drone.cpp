@@ -13,7 +13,7 @@ activate_data_t user_act_data;
 int baudrate = 230400;
 char uart_name[32] = {"/dev/ttyAMA0"};
 char app_bundle_id[32] = "1234567890";
-char key[] = "f28973098ca26058f1c2a81676a49e48fad27a4703728811ffb612526087a2e0";
+
 char port_name[32] = {"/dev/ttyAMA0"};
 
 bool OpenSerialPort() {
@@ -37,7 +37,7 @@ void OnActivate(unsigned short result) {
     DJI_Pro_Control_Management(1, NULL);
 }
 
-bool Drone::Connect() 
+bool Drone::Connect(int app_id, char key[]) 
 {
     cout << "Connecting drone..." << endl;
     if(OpenSerialPort()) {
@@ -45,7 +45,7 @@ bool Drone::Connect()
     }
 
     user_act_data.app_key = key;
-    user_act_data.app_id = 1024746;
+    user_act_data.app_id = app_id;
     user_act_data.app_api_level = 2;
     user_act_data.app_ver = SDK_VERSION;
 
