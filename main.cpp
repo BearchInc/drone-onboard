@@ -125,7 +125,7 @@ void moveDroneRight()
     {
         user_ctrl_data.ctrl_flag = HORIZ_POS|VERT_VEL|YAW_ANG|HORIZ_BODY|YAW_BODY;
         user_ctrl_data.roll_or_x = 0;
-        user_ctrl_data.pitch_or_y = 3;
+        user_ctrl_data.pitch_or_y = -3;
         user_ctrl_data.thr_z = 0;
         user_ctrl_data.yaw = 0;
         DJI_Pro_Attitude_Control(&user_ctrl_data);
@@ -140,7 +140,7 @@ void moveDroneLeft()
     {
         user_ctrl_data.ctrl_flag = HORIZ_POS|VERT_VEL|YAW_ANG|HORIZ_BODY|YAW_BODY;
         user_ctrl_data.roll_or_x = 0;
-        user_ctrl_data.pitch_or_y = -3;
+        user_ctrl_data.pitch_or_y = 3;
         user_ctrl_data.thr_z = 0;
         user_ctrl_data.yaw = 0;
         DJI_Pro_Attitude_Control(&user_ctrl_data);
