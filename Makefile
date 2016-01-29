@@ -6,7 +6,7 @@ DEPLOY_TARGET = raspberry1
 
 OBJECTS = $(OUTPUT)/main.o $(OUTPUT)/Lock.o $(OUTPUT)/control.o $(OUTPUT)/drone.o $(OUTPUT)/brain.o $(OUTPUT)/DJI_Pro_App.o $(OUTPUT)/DJI_Pro_Hw.o $(OUTPUT)/DJI_Pro_Link.o $(OUTPUT)/DJI_Pro_Codec.o $(OUTPUT)/DJI_Pro_Rmu.o
 
-CFLAGS = -Ilibs/includes -IDJI_LIB
+CFLAGS = -Ilibs/includes -IDJI_LIB -std=c++11
 
 LDFLAGS = -Llibs -lpthread -lwiringPi -lrt -lusb-1.0 -lDJI_guidance
 
@@ -36,8 +36,8 @@ $(OUTPUT)/drone.o : models/drone.cpp
 $(OUTPUT)/brain.o : models/brain.cpp
 	$(CXX) $(CFLAGS) -c -o $(OUTPUT)/brain.o models/brain.cpp
 
-$(OUTPUT)/Lock.o : Lock.cpp
-	$(CXX) $(CFLAGS) -c -o $(OUTPUT)/Lock.o Lock.cpp
+$(OUTPUT)/Lock.o : models/Lock.cpp
+	$(CXX) $(CFLAGS) -c -o $(OUTPUT)/Lock.o models/Lock.cpp
 
 $(OUTPUT)/DJI_Pro_App.o : DJI_LIB/DJI_Pro_App.cpp
 	$(CXX) $(CFLAGS) -c -o $(OUTPUT)/DJI_Pro_App.o DJI_LIB/DJI_Pro_App.cpp

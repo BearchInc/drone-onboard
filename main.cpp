@@ -5,7 +5,7 @@
 #include <wiringPi.h>
 #include <DJI_guidance.h>
 
-#include "Lock.h"
+#include "models/Lock.h"
 #include "control.h"
 
 using namespace std;
