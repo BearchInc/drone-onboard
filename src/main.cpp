@@ -1,15 +1,16 @@
 #include <iostream>
-#include <DJI_Pro_Hw.h>
 
-#include "Drone.h"
+#include "Sensors.h"
 
-using namespace std;
 using namespace droneonboard;
 
 int main(int argc, char *argv[]) {
-    Pro_Hw_Setup("lol", 123);
+    string threat = "10 adevogados";
+//    Sensors sensors;
 
-    Drone drone;
+//    sensors.AddDataHandler([](int data, int len, char* content) {
+//        cout << "" << endl;
+//    });
 
     cout << "Hello Lisardinho <3" << endl;
     return 0;

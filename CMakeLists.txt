@@ -1,6 +1,11 @@
+# TODO
+# Use the g++ cross compiler for ARM
+# Make sure we can run on linux
+
 cmake_minimum_required(VERSION 3.3)
 project(DroneOnboard)
 
+set(CMAKE_CXX_COMPILER "/usr/local/linaro/arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf-g++")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 # Glob Source Files
@@ -12,11 +17,11 @@ include_directories("libs/DJI_LIB")
 include_directories("${PROJECT_SOURCE_DIR}/libs/includes")
 
 # Shared Libraries Sources
-add_library(djisdk SHARED ${DJI_SOURCES})
+add_library(djisdk ${DJI_SOURCES})
 
 # Library Search Paths
 link_directories("${PROJECT_SOURCE_DIR}/libs")
 
 # Build Executable and Link Libraries
 add_executable(DroneOnboard ${SOURCES})
-target_link_libraries(DroneOnboard djisdk DJI_guidance usb-1.0 wiringPi wiringPiDev)
+target_link_libraries(DroneOnboard djisdk rt pthread DJI_guidance usb-1.0 wiringPi wiringPiDev)
