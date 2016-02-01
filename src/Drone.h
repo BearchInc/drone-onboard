@@ -1,7 +1,3 @@
-//
-// Created by Diego Borges on 2/1/16.
-//
-
 #ifndef DRONEONBOARD_DRONE_H
 #define DRONEONBOARD_DRONE_H
 
@@ -9,11 +5,12 @@
 
 using namespace std;
 
-class Drone {
+namespace droneonboard {
 
-public:
-    string Greet(string name);
-};
-
+    class Drone {
+    public:
+        string Greet(string name);
+    };
+}
 
 #endif //DRONEONBOARD_DRONE_H
