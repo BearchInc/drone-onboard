@@ -1,5 +1,4 @@
 # TODO
-# Use the g++ cross compiler for ARM
 # Make sure we can run on linux
 
 cmake_minimum_required(VERSION 3.3)
