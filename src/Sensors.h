@@ -1,5 +1,4 @@
-#ifndef DRONEONBOARD_SENSORS_H
-#define DRONEONBOARD_SENSORS_H
+#pragma once
 
 #include <vector>
 #include <functional>
@@ -16,5 +15,3 @@ namespace droneonboard {
         void OnData(DataHandler handler);
     };
 }
-
-#endif

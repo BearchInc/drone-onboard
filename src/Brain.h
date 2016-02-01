@@ -9,7 +9,7 @@ namespace droneonboard {
         Drone drone;
         Sensors sensors;
     public:
-        Brain(Drone d, Sensors s);
+        Brain(Drone d, Sensors s) : drone(d), sensors(s) {}
         void Think();
     };
 }

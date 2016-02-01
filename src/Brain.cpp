@@ -12,7 +12,7 @@ using namespace droneonboard;
 void Brain::Think() {
     // TODO implement AI...
 
-    sensors.OnData([drone](int data, int len, char* content) {
+    sensors.OnData([&](int data, int len, char* content) {
         cout << drone.Greet("Mah Oe... Lisardinho") << endl;
     });
 
