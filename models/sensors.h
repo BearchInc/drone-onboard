@@ -19,7 +19,6 @@ namespace drones {
         static UltrasonicDataHandler OnUltrasonicData;
         static ObstacleDistanceDataHandler OnObstacleDistanceData;
         static int handleDataEvent(int data_type, int data_len, char *content);
-        static int num;
 
         static int Connect();
         static int Disconnect();

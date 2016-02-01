@@ -52,5 +52,4 @@ void Sensors::RegisterForUltrasonicData(UltrasonicDataHandler cb) {
     cout << "Registering on ultrasonic data handler" << endl;
     select_ultrasonic();
 //    OnUltrasonicData = cb;
-    Sensors::num = 2;
 }

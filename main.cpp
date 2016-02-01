@@ -7,7 +7,6 @@
 
 #include "models/Lock.h"
 #include "control.h"
-#include "models/brain.h"
 #include "models/drone.h"
 
 using namespace std;
