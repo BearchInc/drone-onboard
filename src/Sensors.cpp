@@ -13,10 +13,18 @@ int on_board_event_handler(int data, int len, char *content) {
     return 0;
 }
 
-int Sensors::Connect() {
+void Sensors::Connect() {
+    select_ultrasonic();
+    select_obstacle_distance();
     set_sdk_event_handler(&on_board_event_handler);
+    start_transfer();
 }
 
-void Sensors::AddDataHandler(DataHandler handler) {
+void Sensors::Disconnect() {
+    stop_transfer();
+    release_transfer();
+}
+
+void Sensors::OnData(DataHandler handler) {
     handlers.push_back(handler);
 }

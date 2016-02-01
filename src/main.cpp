@@ -1,17 +1,14 @@
-#include <iostream>
-
 #include "Sensors.h"
+#include "Brain.h"
 
 using namespace droneonboard;
 
 int main(int argc, char *argv[]) {
-    string threat = "10 adevogados";
-//    Sensors sensors;
+    Drone drone;
+    Sensors sensors;
 
-//    sensors.AddDataHandler([](int data, int len, char* content) {
-//        cout << "" << endl;
-//    });
+    Brain brain(drone, sensors);
 
-    cout << "Hello Lisardinho <3" << endl;
+    brain.Think(); // Blocks until program ends...
     return 0;
 }

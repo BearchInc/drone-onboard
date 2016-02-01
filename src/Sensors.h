@@ -2,19 +2,18 @@
 #define DRONEONBOARD_SENSORS_H
 
 #include <vector>
+#include <functional>
 
 using namespace std;
 
 namespace droneonboard {
-    typedef void (*DataHandler)(int, int, char *);
+    typedef function<void(int, int, char*)> DataHandler;
 
     class Sensors {
     public:
-        int Connect();
-
-        int Disconnect();
-
-        void AddDataHandler(DataHandler handler);
+        void Connect();
+        void Disconnect();
+        void OnData(DataHandler handler);
     };
 }
 
