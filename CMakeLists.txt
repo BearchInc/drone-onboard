@@ -3,11 +3,20 @@ project(DroneOnboard)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-include_directories("${PROJECT_SOURCE_DIR}/DJI_LIB")
+# Glob Source Files
+file(GLOB DJI_SOURCES libs/DJI_LIB/*.cpp)
+file(GLOB SOURCES src/*.cpp)
 
-file(GLOB DJI_SOURCES DJI_LIB/*.cpp)
+# Header Search Paths
+include_directories("libs/DJI_LIB")
+include_directories("${PROJECT_SOURCE_DIR}/libs/includes")
+
+# Shared Libraries Sources
 add_library(djisdk SHARED ${DJI_SOURCES})
 
-add_executable(DroneOnboard main.cpp)
+# Library Search Paths
+link_directories("${PROJECT_SOURCE_DIR}/libs")
 
-target_link_libraries(DroneOnboard djisdk)
+# Build Executable and Link Libraries
+add_executable(DroneOnboard ${SOURCES})
+target_link_libraries(DroneOnboard djisdk DJI_guidance usb-1.0 wiringPi wiringPiDev)
