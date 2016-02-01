@@ -4,8 +4,8 @@
 using namespace droneonboard;
 
 int main(int argc, char *argv[]) {
-    Drone drone;
     Sensors sensors;
+    Drone drone("/dev/ttyLOL", 2345434);
 
     Brain brain(drone, sensors);
 

@@ -7,7 +7,12 @@ using namespace std;
 namespace droneonboard {
 
     class Drone {
+        string device;
+        int baudrate;
     public:
-        string Greet(string name);
+        Drone(string device, int baudrate) : device(device), baudrate(baudrate) {}
+        void Connect();
+        void Disconnect();
+        string Say(string name);
     };
 }

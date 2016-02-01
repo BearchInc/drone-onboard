@@ -2,7 +2,10 @@
 
 using namespace droneonboard;
 
-string Drone::Greet(string name)
+void Drone::Connect() { }
+void Drone::Disconnect() { }
+
+string Drone::Say(string name)
 {
     return "Hello " + name;
 };

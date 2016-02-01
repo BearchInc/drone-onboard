@@ -1,17 +1,19 @@
 #pragma once
 
-#include <vector>
 #include <functional>
+#include <DJI_guidance.h>
 
 using namespace std;
 
 namespace droneonboard {
-    typedef function<void(int, int, char*)> DataHandler;
+    typedef function<void(ultrasonic_data* data)> UltrasonicDataHandler;
+    typedef function<void(obstacle_distance* data)> ObstacleDistanceDataHandler;
 
     class Sensors {
     public:
         void Connect();
         void Disconnect();
-        void OnData(DataHandler handler);
+        void OnUltrasonicData(UltrasonicDataHandler);
+        void OnObstacleDistance(ObstacleDistanceDataHandler);
     };
 }
