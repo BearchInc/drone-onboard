@@ -1,5 +1,4 @@
-#ifndef DRONEONBOARD_DRONE_H
-#define DRONEONBOARD_DRONE_H
+#pragma once
 
 #include <string>
 
@@ -12,5 +11,3 @@ namespace droneonboard {
         string Greet(string name);
     };
 }
-
-#endif //DRONEONBOARD_DRONE_H

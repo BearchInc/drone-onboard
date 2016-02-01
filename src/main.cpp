@@ -11,6 +11,6 @@ int main(int argc, char *argv[]) {
 
     Drone drone;
 
-    cout << drone.Greet("Diego") << endl;
+    cout << "Hello Lisardinho <3" << endl;
     return 0;
 }

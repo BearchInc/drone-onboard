@@ -1,5 +1,4 @@
-#ifndef DRONEONBOARD_BRAIN_H
-#define DRONEONBOARD_BRAIN_H
+#pragma once
 
 namespace droneonboard {
 
@@ -8,4 +7,3 @@ namespace droneonboard {
     };
 }
 
-#endif //DRONEONBOARD_BRAIN_H

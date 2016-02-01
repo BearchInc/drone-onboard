@@ -1,5 +1,4 @@
-#ifndef DRONEONBOARD_SENSORS_H
-#define DRONEONBOARD_SENSORS_H
+#pragma once
 
 #include <vector>
 
@@ -25,5 +24,3 @@ namespace droneonboard {
         AddDataHandler(DataHandler);
     };
 }
-
-#endif //DRONEONBOARD_SENSORS_H
