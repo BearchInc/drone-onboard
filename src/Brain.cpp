@@ -5,7 +5,7 @@
 using namespace std;
 using namespace droneonboard;
 
-void Brain::Think() {
+void Brain::WakeUp() {
     // TODO
     // . implement AI...
     // . handle errors try/catch disconnecting components upon failure

@@ -4,11 +4,10 @@
 using namespace droneonboard;
 
 int main(int argc, char *argv[]) {
-    Sensors sensors;
-    Drone drone("/dev/ttyLOL", 2345434);
+    DJIAccount account("123123", "ASdf34SDf345Dfgh");
+    Drone drone("/dev/ttyLOL", 2345434, account);
+    Brain brain(drone, Sensors());
 
-    Brain brain(drone, sensors);
-
-    brain.Think(); // Blocks until program ends...
+    brain.WakeUp(); // Blocks until program ends...
     return 0;
 }

@@ -6,6 +6,7 @@
 namespace droneonboard {
     class Sensors {
     public:
+        Sensors() {}
         void Connect();
         void Disconnect();
         void OnUltrasonicData(guidance::UltrasonicDataListener);
