@@ -1,6 +1,7 @@
 #include <vector>
 #include "Sensors.h"
 
+using namespace std;
 using namespace droneonboard;
 
 namespace droneonboard {

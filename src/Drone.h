@@ -2,17 +2,15 @@
 
 #include <string>
 
-using namespace std;
-
 namespace droneonboard {
 
     class Drone {
-        string device;
+        std::string device;
         int baudrate;
     public:
-        Drone(string device, int baudrate) : device(device), baudrate(baudrate) {}
+        Drone(std::string device, int baudrate) : device(device), baudrate(baudrate) {}
         void Connect();
         void Disconnect();
-        string Say(string name);
+        std::string Say(std::string name);
     };
 }

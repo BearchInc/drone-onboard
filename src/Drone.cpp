@@ -1,5 +1,6 @@
 #include "Drone.h"
 
+using namespace std;
 using namespace droneonboard;
 
 void Drone::Connect() { }

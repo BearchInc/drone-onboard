@@ -3,11 +3,9 @@
 #include <functional>
 #include <DJI_guidance.h>
 
-using namespace std;
-
 namespace droneonboard {
-    typedef function<void(ultrasonic_data* data)> UltrasonicDataHandler;
-    typedef function<void(obstacle_distance* data)> ObstacleDistanceDataHandler;
+    typedef std::function<void(ultrasonic_data* data)> UltrasonicDataHandler;
+    typedef std::function<void(obstacle_distance* data)> ObstacleDistanceDataHandler;
 
     class Sensors {
     public:
