@@ -6,6 +6,7 @@
 namespace droneonboard {
 
     class Brain {
+    private:
         Drone drone;
         Sensors sensors;
     public:

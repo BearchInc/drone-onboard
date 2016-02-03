@@ -1,7 +1,7 @@
 #pragma once
 
 #include <DJI_guidance.h>
-#include "guidance.h"
+#include "Guidance.h"
 
 namespace droneonboard {
     class Sensors {

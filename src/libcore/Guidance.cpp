@@ -1,5 +1,5 @@
 #include <DJI_guidance.h>
-#include "guidance.h"
+#include "Guidance.h"
 
 using namespace std;
 

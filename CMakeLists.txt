@@ -7,20 +7,18 @@ project(DroneOnboard)
 set(CMAKE_CXX_COMPILER "/usr/local/linaro/arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf-g++")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-# Glob Source Files
-file(GLOB DJI_SOURCES libs/DJI_LIB/*.cpp)
-file(GLOB SOURCES src/*.cpp)
+# Add libs directory to the lib search path
+link_directories(libs)
 
-# Header Search Paths
-include_directories("libs/DJI_LIB")
-include_directories("${PROJECT_SOURCE_DIR}/libs/includes")
+# Add libs include files to the include search path
+include_directories(
+        libs/includes
+        src/libcore/includes)
 
-# Shared Libraries Sources
-add_library(djisdk ${DJI_SOURCES})
+# Add cmake submodules configurations
+add_subdirectory(src/libdji)
+add_subdirectory(src/libcore)
 
-# Library Search Paths
-link_directories("${PROJECT_SOURCE_DIR}/libs")
+add_executable(DroneOnboard main.cpp)
 
-# Build Executable and Link Libraries
-add_executable(DroneOnboard ${SOURCES})
-target_link_libraries(DroneOnboard djisdk rt pthread DJI_guidance usb-1.0 wiringPi wiringPiDev)
+target_link_libraries(DroneOnboard core)
